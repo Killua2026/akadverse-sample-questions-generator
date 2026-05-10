@@ -1,5 +1,5 @@
 # AkadVerse Sample Questions Generator
-### Tier 5 Learning AI Tool | Microservice Port: `8009`
+### Tier 5 Learning AI Tool | Microservice Port: `8013`
 
 > A faculty-facing AI tool that generates exam-representative sample questions
 > for student exam preparation. Produces structured question banks across four
@@ -275,7 +275,7 @@ This must be done before testing the PDF export endpoint.
 From inside your project folder with the virtual environment activated:
 
 ```bash
-uvicorn sample_questions_generator:app --host 127.0.0.1 --port 8009 --reload
+uvicorn sample_questions_generator:app --host 127.0.0.1 --port 8013 --reload
 ```
 
 **Expected startup output:**
@@ -283,9 +283,9 @@ uvicorn sample_questions_generator:app --host 127.0.0.1 --port 8009 --reload
 ```
 [Startup] AkadVerse Sample Questions Generator initialising...
 [DB] Question bank initialised successfully.
-[Startup] Ready. Run: uvicorn sample_questions_generator:app --host 127.0.0.1 --port 8009 --reload
+[Startup] Ready. Run: uvicorn sample_questions_generator:app --host 127.0.0.1 --port 8013 --reload
 INFO:     Application startup complete.
-INFO:     Uvicorn running on http://127.0.0.1:8009 (Press CTRL+C to quit)
+INFO:     Uvicorn running on http://127.0.0.1:8013 (Press CTRL+C to quit)
 ```
 
 Two files are created automatically on first startup:
@@ -443,7 +443,7 @@ to disk. Two versions are available via the `include_answers` parameter.
 Open this URL directly in your browser (replace the batch ID):
 
 ```
-http://127.0.0.1:8009/export-pdf/YOUR_BATCH_ID?include_answers=false
+http://127.0.0.1:8013/export-pdf/YOUR_BATCH_ID?include_answers=false
 ```
 
 Your browser will prompt you to download the PDF immediately. In Swagger
@@ -513,7 +513,7 @@ Each row represents one `/generate-questions` call.
 With the server running, open:
 
 ```
-http://127.0.0.1:8009/docs
+http://127.0.0.1:8013/docs
 ```
 
 To test any endpoint: click its name, click **"Try it out"**, fill in the
@@ -577,7 +577,7 @@ answer questions across all topics.
 Open this URL in your browser (replace `YOUR_BATCH_ID`):
 
 ```
-http://127.0.0.1:8009/export-pdf/YOUR_BATCH_ID?include_answers=false
+http://127.0.0.1:8013/export-pdf/YOUR_BATCH_ID?include_answers=false
 ```
 
 **Expected:** Your browser downloads a PDF. Open it and verify:
@@ -593,7 +593,7 @@ http://127.0.0.1:8009/export-pdf/YOUR_BATCH_ID?include_answers=false
 ### Test 5 -- Export lecturer PDF
 
 ```
-http://127.0.0.1:8009/export-pdf/YOUR_BATCH_ID?include_answers=true
+http://127.0.0.1:8013/export-pdf/YOUR_BATCH_ID?include_answers=true
 ```
 
 **Expected:** Same PDF as Test 4 plus an **ANSWER KEY** page at the end
@@ -652,7 +652,7 @@ same batch multiple times and it will always reflect the stored questions.
 
 The `pdf_export_url` in the generation response, e.g.
 `/export-pdf/a3f1b2c4d5e6`, is a relative path. To use it, prepend
-the server address: `http://127.0.0.1:8009/export-pdf/a3f1b2c4d5e6`.
+the server address: `http://127.0.0.1:8013/export-pdf/a3f1b2c4d5e6`.
 
 ### The `batch_id`
 
@@ -804,7 +804,7 @@ sums to 100).
 
 **`Address already in use` on startup**
 
-Port 8009 is occupied. Use a different port:
+Port 8013 is occupied. Use a different port:
 ```bash
 uvicorn sample_questions_generator:app --host 127.0.0.1 --port 8010 --reload
 ```
@@ -838,10 +838,10 @@ akadverse-sample-questions-generator/
 This microservice is **Tier 5** in the AkadVerse AI architecture, operating
 within the *My Teaching* module alongside:
 
-- Concept Explainer (Port 8006)
-- External Resources Puller (Port 8007)
-- Assignment Generator (Port 8008)
-- Notes Creator (Port 8010)
+- Concept Explainer 
+- External Resources Puller 
+- Assignment Generator 
+- Notes Creator 
 
 The `questions.generated` Kafka event published by this service is consumed
 by the platform's Insight Engine and student notification services in

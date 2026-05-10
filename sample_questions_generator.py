@@ -1,6 +1,6 @@
 """
 AkadVerse — Sample Questions Generator
-Tier 5 | Microservice Port: 8009
+Tier 5 | Microservice Port: 8013
 ========================================================================
 v1.0 — Initial build.
 
@@ -23,7 +23,7 @@ Architecture:
   - Questions are stored individually for fine-grained querying.
   - fpdf2 handles PDF export — lightweight, no Java, Windows-compatible.
   - Difficulty uses Bloom's Taxonomy (Nigerian university standard).
-  - Port: 8009
+  - Port: 8013
 
 Endpoints:
   POST /generate-questions      — Generate a batch of sample questions
@@ -755,7 +755,7 @@ async def lifespan(_: "FastAPI") -> AsyncIterator[None]:
     """Initialises application resources on startup."""
     print("[Startup] AkadVerse Sample Questions Generator initialising...")
     init_db()
-    print("[Startup] Ready. Run: uvicorn sample_questions_generator:app --host 127.0.0.1 --port 8009 --reload")
+    print("[Startup] Ready. Run: uvicorn sample_questions_generator:app --host 127.0.0.1 --port 8013 --reload")
     yield
     print("[Shutdown] AkadVerse Sample Questions Generator stopped.")
 
@@ -1243,5 +1243,5 @@ async def health_check():
 
 
 # =========================================================
-# Run: uvicorn sample_questions_generator:app --host 127.0.0.1 --port 8009 --reload
+# Run: uvicorn sample_questions_generator:app --host 127.0.0.1 --port 8013 --reload
 # =========================================================
